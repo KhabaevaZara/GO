@@ -37,7 +37,7 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
 	}
 
 	res, err := database.DB.Exec("INSERT INTO Tasks (user_id, title, description) VALUES (?, ?, ?)",
-		1, task.Title, task.Description)
+		task.UserID, task.Title, task.Description) // Изменено на task.UserID
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
